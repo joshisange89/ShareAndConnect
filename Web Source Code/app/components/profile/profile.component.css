@@ -1,0 +1,146 @@
+.container {
+  width: 102%;
+  margin-left: -1%;
+}
+
+.search {
+  box-shadow: 1px 1px 1px #d1d8e0;
+  background-color: white;
+  margin-top: -16px;
+}
+
+#search-box {
+  margin-top: 1%;
+  margin-left: 2%;
+}
+
+.search span {
+  margin-top: 1%;
+}
+
+.search .col-md-4 {
+  margin-top: 2px;
+}
+
+.glyphicon-plus, .glyphicon-star-empty {
+  font-size: 25px;
+}
+
+.side {
+  box-shadow: 0px 0px 1px 0px #d1d8e0;
+  background-color: white;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.main {
+  box-shadow: 0px 0px 1px 1px #d1d8e0;
+  background-color: white;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.profile {
+  border: 1px solid #d1d7e0;
+  margin: 5%;
+  border-radius: 15px;
+  padding-bottom: 5%;
+}
+
+.profile input {
+  border: none;
+  text-align: center;
+  width: auto;
+}
+
+#profilepic {
+  margin-left: 25%;
+}
+
+#name {
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.item {
+  border: 1px solid #d1d7e0;
+  border-radius: 15px;
+  margin-left: 2%;
+  padding: 25px 25px 35px 25px;
+  text-align: center;
+}
+
+.item button {
+  padding: 2px 2px;
+}
+
+.item p {
+  font-size: 12pt;
+}
+
+#sharedText {
+  margin-left: 36%;
+}
+
+/* Slider control */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 18px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.alignSlider {
+  display: flex;
+}

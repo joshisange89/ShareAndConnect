@@ -1,0 +1,33 @@
+<div class="landing"><div class="blur">
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+<br/><br/>
+  <div class="well">
+    <h3>Member Sign Up</h3><br/>
+    <form class="form-signup" (submit)="signup()" #signOutForm="ngForm">
+      <label for="name" class="sr-only">Name</label>
+      <input type="text" name="name" id="name" [(ngModel)]="name" class="form-control" placeholder="Name" required>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" name="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Password" required>
+      <label for="confirm_pass" class="sr-only">Confirm Password</label>
+      <input type="password" name="confirm_pass" id="confirm_pass" [(ngModel)]="confirm_pass" class="form-control" placeholder="Confirm Password" required>
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control" placeholder="Email" required>
+      <label for="zipcode" class="sr-only">ZipCode</label>
+      <input type="number" name="zipcode" id="zipcode" [(ngModel)]="zipcode" class="form-control" placeholder="Zip Code" required>
+      <label for="address" class="sr-only">Address</label>
+      <textarea name="address" id="address" [(ngModel)]="address" class="form-control" placeholder="Address" required></textarea>
+      <label for="mobileno" class="sr-only">Mobile No</label>
+      <input type="number" name="mobileno" id="mobileno" [(ngModel)]="mobileno" class="form-control" placeholder="Mobile No" required>
+      <br>
+      <button class="btn btn-success btn-md btn-block" type="submit" click="signOutForm.reset()">Sign Up</button>
+    </form>
+    <br/>
+    <h4><a [routerLink]="['']">Go to Login</a></h4>
+  </div>
+  <br/><br/><br/>
+</div>
+</div>

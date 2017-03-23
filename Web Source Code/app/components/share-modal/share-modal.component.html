@@ -1,0 +1,18 @@
+<div class="container-fluid custom-modal-container">
+  <div class="row custom-modal-header">
+    <div class="col-sm-12">
+      <h1>Share Item</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="jumbotron">
+        <form class="form-shareItem" (submit)="shareItem(userEmail.value)">
+          <h3>Please enter member Email Id with whom you want to share this item.</h3>
+          <input type="text" #userEmail class="form-control">
+          <button type="submit" class="btn btn-dander"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

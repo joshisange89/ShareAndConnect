@@ -1,0 +1,21 @@
+<div class="landing"><div class="blur">
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+  <br/><br/><br/><br/>
+<div class="well">
+    <h2>Member Login</h2><br/>
+    <form class="form-signin" (submit)="signin(signInEmail.value, signInPassword.value)" #signInForm="ngForm">
+      <label for="signInEmail" class="sr-only">Email address</label>
+      <input #signInEmail type="email" id="signInEmail" class="form-control" placeholder="Email address">
+      <label for="signInPassword" class="sr-only">Password</label>
+      <input #signInPassword type="password" id="signInPassword" class="form-control" placeholder="Password" required="">
+      <br>
+      <button class="btn btn-md btn-success btn-block" type="submit" click="signInForm.reset()" >Sign in</button>
+    </form>
+    <h4><a [routerLink]="['signup']">Not a Member? Sign Up</a></h4>
+</div>
+</div>
+</div>

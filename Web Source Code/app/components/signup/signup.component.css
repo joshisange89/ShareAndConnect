@@ -1,0 +1,54 @@
+.landing {
+  background: url("http://kingofwallpapers.com/community/community-025.jpg") no-repeat center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  margin-top: -2%;
+}
+
+.blur {
+  background: rgba(230, 243, 255, 0.8);
+  min-height: 100%;
+  min-width: 100%;
+  margin-top: -2%;
+}
+
+.well {
+  width: 40%;
+  margin: auto;
+  margin-top: 5%;
+  background-color: white;
+  border: 2px solid #cce5ff;
+  border-radius: 15%;
+  box-shadow: 5px 5px 5px #d9d9d9;
+  padding: 30px 50px 50px 50px;
+}
+
+.well > h3 {
+  color: #0056b3;
+  text-align: center;
+}
+
+.well > h4 {
+  text-align: center;
+}
+
+.well input {
+  margin: 7px;
+  font-size: large;
+  height: 40px;
+  width: 98%;
+}
+
+#address {
+  width: 98%;
+  margin-left: 2%;
+  font-size: large;
+}
+
+button {
+  font-size: larger;
+  height: 40px;
+}
