@@ -46,13 +46,13 @@ class ItemDetailViewController: UITableViewController {
 	private func showOwnerInfo(){
 		let addedByUser = itemInfo.addedByUser
 		var ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(addedByUser)/contact-info")
+		ref = ref.child("Users/\(addedByUser)/contactInfo")
 		ref.observe(.value, with: { snapshot in
 			if snapshot.exists(){
 				let ownerInfo = User(snapshot:snapshot )
 				self.ownerNameLabel.text = ownerInfo.username
 				self.ownerEmailLabel.text = ownerInfo.email
-				self.ownerMobileNumberLabel.text = ownerInfo.mobileNumber
+				self.ownerMobileNumberLabel.text = "\(ownerInfo.mobileNumber)"
 				self.ownerAddressLabel.text = ownerInfo.address
 			}
 		})

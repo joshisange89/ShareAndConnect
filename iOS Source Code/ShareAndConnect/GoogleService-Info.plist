@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1079775379820-uk7opejq2sc3pgmta5v7veka8v55o24o.apps.googleusercontent.com</string>
+	<string>911216198072-ftq4h030hg9l1ouj5qfmomr6tb57124d.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1079775379820-uk7opejq2sc3pgmta5v7veka8v55o24o</string>
+	<string>com.googleusercontent.apps.911216198072-ftq4h030hg9l1ouj5qfmomr6tb57124d</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA9D85Rw2GdBzKmeRPwEUOldH0cN7jAN5s</string>
+	<string>AIzaSyDbJieiJ3XF0VItIX2a5DSXnTqe3SqXWEE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1079775379820</string>
+	<string>911216198072</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ShareAndConnect.ios</string>
+	<string>com.shareandconnect</string>
 	<key>PROJECT_ID</key>
-	<string>shareandconnect-d26e7</string>
+	<string>share-and-connect-ed9eb</string>
 	<key>STORAGE_BUCKET</key>
-	<string>shareandconnect-d26e7.appspot.com</string>
+	<string>share-and-connect-ed9eb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1079775379820:ios:fcf8a44a6a5e8265</string>
+	<string>1:911216198072:ios:274660cfbee2b8b5</string>
 	<key>DATABASE_URL</key>
-	<string>https://shareandconnect-d26e7.firebaseio.com</string>
+	<string>https://share-and-connect-ed9eb.firebaseio.com</string>
 </dict>
 </plist>

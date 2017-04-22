@@ -32,7 +32,7 @@ class PostItemViewController: UITableViewController, UIImagePickerControllerDele
 		user = FIRAuth.auth()?.currentUser
         // Do any additional setup after loading the view.
 		ref1 = FIRDatabase.database().reference()
-		ref1 = ref1.child("Users/\(self.user.uid)/posted-items")
+		ref1 = ref1.child("Users/\(self.user.uid)/postedItems")
 		imagePicker.delegate = self
     }
 

@@ -16,8 +16,8 @@ class SharedUserInfoViewController: UITableViewController {
 	@IBOutlet weak var userMobileNumberLabel: UILabel!
 	@IBOutlet weak var userAddressLabel: UILabel!
 	
-	var userInfo : User!
-	
+	var userInfo : User?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 	}
@@ -28,10 +28,10 @@ class SharedUserInfoViewController: UITableViewController {
 	}
 	
 	private func showUserInfo(){
-		self.userNameLabel.text = userInfo.username
-		self.userEmailLabel.text = userInfo.email
-		self.userMobileNumberLabel.text = userInfo.mobileNumber
-		self.userAddressLabel.text = userInfo.address
+		self.userNameLabel.text = userInfo?.username
+		self.userEmailLabel.text = userInfo?.email
+		self.userMobileNumberLabel.text = "\(String(describing: userInfo?.mobileNumber))"
+		self.userAddressLabel.text = userInfo?.address
 	}
 
 }

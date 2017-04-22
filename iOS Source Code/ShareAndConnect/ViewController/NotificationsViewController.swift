@@ -1,42 +1,36 @@
 //
-//  WishListViewController.swift
+//  NotificationsViewController.swift
 //  ShareAndConnect
 //
-//  Created by Santa on 2/10/17.
+//  Created by Santa on 4/21/17.
 //  Copyright © 2017 santa. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class WishListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-//	let ref = FIRDatabase.database().reference(withPath: "wish-list")
+class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+	//	let ref = FIRDatabase.database().reference(withPath: "wish-list")
 	var ref : FIRDatabaseReference!
 	var user: FIRUser!
 	var items : [WishListItem] = []
 	
 	@IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		user = FIRAuth.auth()?.currentUser
-        // Do any additional setup after loading the view.
+		// Do any additional setup after loading the view.
 		ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(self.user.uid)/wishList")
-    }
-    
+		ref = ref.child("Notifications")
+	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		updateTableData()
 	}
 	private func updateTableData(){
 		
-		// 1
-		//	  ref.observe(.value, with: { snapshot in
-		// 2
-		
-//		ref.queryOrdered(byChild: "addedByUser").queryEqual(toValue: user.uid).observe(.value, with: { snapshot in
-		
-			ref.queryOrdered(byChild: "name").observe(.value, with: { snapshot in
+		ref.queryOrdered(byChild: "name").observe(.value, with: { snapshot in
 	  var newItems: [WishListItem] = []
 			
 	  // 3
@@ -60,7 +54,7 @@ class WishListViewController: UIViewController, UITableViewDataSource, UITableVi
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cellIdentifier = "WishListTableCellIdentifier"
+		let cellIdentifier = "notificationTableCellIdentifier"
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,for: indexPath) as UITableViewCell
 		let wishItem = items[indexPath.row]
 		cell.textLabel?.text = wishItem.name
@@ -71,11 +65,11 @@ class WishListViewController: UIViewController, UITableViewDataSource, UITableVi
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			  let wishItem = items[indexPath.row]
-			  wishItem.ref?.removeValue()
+			let wishItem = items[indexPath.row]
+			wishItem.ref?.removeValue()
 		}
 	}
-
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showWishListItemInfo"{
 			if let itemDetailViewController = segue.destination as? AddItemToWishListViewController {

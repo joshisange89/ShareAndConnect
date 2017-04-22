@@ -39,7 +39,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	private func loggedInUserInfo(){
 		let userId = user.uid
 		var ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(userId)/contact-info")
+		ref = ref.child("Users/\(userId)/contactInfo")
 		ref.observe(.value, with: { snapshot in
 			if snapshot.exists(){
 				let sharedItem = User(snapshot:snapshot )
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			var nearUsers:[User] = []
 			for child in snapshot.children {
 				if (child as! FIRDataSnapshot).key != self.user.uid{
-			  let childContactKeyPath = (child as! FIRDataSnapshot).key + "/contact-info"
+			  let childContactKeyPath = (child as! FIRDataSnapshot).key + "/contactInfo"
 			  let childSnapshot = snapshot.childSnapshot(forPath: childContactKeyPath)
 			  let userItem = User(snapshot: childSnapshot)
 			  nearUsers.append(userItem)
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			let location = getLocation(lat: lat, long: long)
 			let distance = loggedUserLocation.distance(from: location)
 			print(distance)
-			if distance < 15000 {
+			if distance < 20000 {
 				let neighbour = NearByUser(distance: distance, user: user)
 				allNearUsers.append(neighbour)
 			}
@@ -91,11 +91,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		self.nearByUsers.sort{$0.distance < $1.distance}
 	}
 	
-	private func getLocation(lat: String, long: String) -> CLLocation{
+	private func getLocation(lat: Double, long: Double) -> CLLocation{
 		var location = CLLocation()
-		if let lat = Double(lat) , let long = Double(long){
-			location = CLLocation(latitude: lat, longitude: long)
-		}
+		let lat = lat
+		let long = long
+		location = CLLocation(latitude: lat, longitude: long)
+		
 		return location
 	}
 
@@ -103,7 +104,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		self.nearByItems.removeAll()
 		for selectedUser in nearByUsers{
 			let selectedUserId = selectedUser.user.uid
-			let ref1 = ref.child("\(selectedUserId)/posted-items")
+			let ref1 = ref.child("\(selectedUserId)/postedItems")
 			
 			ref1.queryOrdered(byChild: "availableDate").observe(.value, with: { snapshot in
 				for item in snapshot.children {
@@ -171,6 +172,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		let sharedItem = filteredItems[indexPath.row]
 		
 		cell.itemName.text = sharedItem.name
+		
+		//format date:
+		
+//		let dateFormatter = DateFormatter()
+//		dateFormatter.dateFormat = "LLL, DD YYYY"
+//		let date = dateFormatter.date(from: sharedItem.availableDate)
+		
+		
 		cell.itemAvailableDate.text = sharedItem.availableDate
 		cell.itemImage.image = getImageFromBase64String(base64String: sharedItem.itemImageBase64!)
 		return cell

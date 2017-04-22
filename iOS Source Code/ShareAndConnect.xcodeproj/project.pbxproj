@@ -16,6 +16,7 @@
 		AF5D85841E7B3D1B003A6B01 /* NearByUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D85831E7B3D1A003A6B01 /* NearByUser.swift */; };
 		AF5D85861E7C7879003A6B01 /* PostedItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D85851E7C7879003A6B01 /* PostedItemDetailViewController.swift */; };
 		AF5D85881E7C9374003A6B01 /* SharedUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D85871E7C9374003A6B01 /* SharedUserInfoViewController.swift */; };
+		AF5DEFDF1EAAB90C00A48FDE /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5DEFDE1EAAB90C00A48FDE /* NotificationsViewController.swift */; };
 		AF7D86781E68E0C4006C7100 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D866F1E68E0C4006C7100 /* HomeViewController.swift */; };
 		AF7D86791E68E0C4006C7100 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D86701E68E0C4006C7100 /* ItemDetailViewController.swift */; };
 		AF7D867A1E68E0C4006C7100 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7D86711E68E0C4006C7100 /* LoginViewController.swift */; };
@@ -47,6 +48,7 @@
 		AF5D85831E7B3D1A003A6B01 /* NearByUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearByUser.swift; path = Model/NearByUser.swift; sourceTree = "<group>"; };
 		AF5D85851E7C7879003A6B01 /* PostedItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostedItemDetailViewController.swift; sourceTree = "<group>"; };
 		AF5D85871E7C9374003A6B01 /* SharedUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedUserInfoViewController.swift; sourceTree = "<group>"; };
+		AF5DEFDE1EAAB90C00A48FDE /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		AF7D866F1E68E0C4006C7100 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AF7D86701E68E0C4006C7100 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		AF7D86711E68E0C4006C7100 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +115,9 @@
 				AF5D85851E7C7879003A6B01 /* PostedItemDetailViewController.swift */,
 				AF5D85871E7C9374003A6B01 /* SharedUserInfoViewController.swift */,
 				AF7D86761E68E0C4006C7100 /* WishListViewController.swift */,
-				AF55C81A1E71F8A90068C5E3 /* ProfileTableViewController.swift */,
 				AF55C81C1E7222F60068C5E3 /* AddItemToWishListViewController.swift */,
+				AF55C81A1E71F8A90068C5E3 /* ProfileTableViewController.swift */,
+				AF5DEFDE1EAAB90C00A48FDE /* NotificationsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				AF7D868A1E6A2087006C7100 /* User.swift in Sources */,
 				AF7D86781E68E0C4006C7100 /* HomeViewController.swift in Sources */,
 				AF7D867C1E68E0C4006C7100 /* PostItemViewController.swift in Sources */,
+				AF5DEFDF1EAAB90C00A48FDE /* NotificationsViewController.swift in Sources */,
 				AF7D86881E6A1E2A006C7100 /* ShareItem.swift in Sources */,
 				AFF9783F1E4E6A80000F018A /* SharedTableViewCell.swift in Sources */,
 				AF7D867F1E68E0C4006C7100 /* WishListViewController.swift in Sources */,
@@ -458,7 +462,7 @@
 				DEVELOPMENT_TEAM = CNXXD2Z2Z2;
 				INFOPLIST_FILE = ShareAndConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ShareAndConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ShareAndConnect123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -472,7 +476,7 @@
 				DEVELOPMENT_TEAM = CNXXD2Z2Z2;
 				INFOPLIST_FILE = ShareAndConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ShareAndConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ShareAndConnect123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

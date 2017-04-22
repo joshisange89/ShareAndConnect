@@ -14,32 +14,32 @@ struct User {
 	let uid: String
 	let email: String
 	let username: String
-	let mobileNumber: String
+	let mobileNumber: Int
 	let zipCode: String
 	let address: String
-	let latitude: String
-	let longitude: String
-	let profilePic: String
+	let latitude: Double
+	let longitude: Double
+	let profilePic: String?
 	let ref: FIRDatabaseReference?
 
 	
 	init(snapshot: FIRDataSnapshot) {
 		key = snapshot.key
 		let snapshotValue = snapshot.value as! [String: AnyObject]
-		address = snapshotValue["Address"] as! String
-		email = snapshotValue["Email"] as! String
-		mobileNumber = snapshotValue["MobileNo"] as! String
-		username = snapshotValue["Username"] as! String
-		zipCode = snapshotValue["Zipcode"] as! String
-		latitude = snapshotValue["latitude"] as! String
-		longitude = snapshotValue["longitude"] as! String
-		profilePic = snapshotValue["profilePic"] as! String
+		address = snapshotValue["address"] as! String
+		email = snapshotValue["email"] as! String
+		mobileNumber = snapshotValue["mobileno"] as! Int
+		username = snapshotValue["name"] as! String
+		zipCode = snapshotValue["zipcode"] as! String
+		latitude = snapshotValue["latitude"] as! Double
+		longitude = snapshotValue["longitude"] as! Double
+		profilePic = snapshotValue["image"] as? String
 		uid = snapshotValue["uid"] as! String
 		ref = snapshot.ref
 		
 	}
 	
-	init(key: String, uid: String, email: String, username: String, mobileNumber: String, zipCode: String, address: String, latitude:String, longitude: String, profilePic: String) {
+	init(key: String, uid: String, email: String, username: String, mobileNumber: Int, zipCode: String, address: String, latitude:Double, longitude: Double, profilePic: String) {
 		self.key = key
 		self.uid = uid
 		self.email = email

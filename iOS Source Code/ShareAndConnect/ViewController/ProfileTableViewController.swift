@@ -26,7 +26,7 @@ class ProfileTableViewController: UITableViewController {
         super.viewDidLoad()
 		user = FIRAuth.auth()?.currentUser
 		ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(self.user.uid)/contact-info")
+		ref = ref.child("Users/\(self.user.uid)/contactInfo")
 		showUserProfileInfo()
     }
 	
@@ -43,21 +43,26 @@ class ProfileTableViewController: UITableViewController {
 					let userInfo = User(snapshot:snapshot )
 		self.userNameLabel.text = userInfo.username
 		self.emailIDLabel.text = userInfo.email
-		self.mobileNumberLabel.text = userInfo.mobileNumber
+		self.mobileNumberLabel.text = "\(userInfo.mobileNumber)"
 		self.zipCodeLabel.text = userInfo.zipCode
 		self.addressLabel.text = userInfo.address
-		let profilePic = self.getImageFromBase64String(base64String: userInfo.profilePic)
-		self.profilePicImageView.image = profilePic
-		}
+					if let imageName = userInfo.profilePic{
+					let profilePic = self.getImageFromBase64String(base64String: imageName)
+						self.profilePicImageView.image = profilePic
+						}
+					}
 		//}
 	  // 5
 	  })
 	}
 
 	
-	private func getImageFromBase64String(base64String: String) -> UIImage{
+	private func getImageFromBase64String(base64String: String) -> UIImage?{
+		var image : UIImage? = #imageLiteral(resourceName: "profile1")
+		if base64String.characters.count > 0 {
 		let decodedData = Data(base64Encoded: base64String, options:.ignoreUnknownCharacters)
-		let image = UIImage(data: decodedData!)!
+			image = UIImage(data: decodedData!)!
+		}
 		return image
 	}
 

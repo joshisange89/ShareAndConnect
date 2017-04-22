@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class SharedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-	let ref = FIRDatabase.database().reference(withPath: "posted-items")
+	let ref = FIRDatabase.database().reference(withPath: "postedItems")
 	var items: [ShareItem] = []
 	var user: FIRUser!
 	var ref1 = FIRDatabase.database().reference()
@@ -23,11 +23,16 @@ class SharedViewController: UIViewController, UITableViewDataSource, UITableView
 		// Do any additional setup after loading the view, typically from a nib.
 		user = FIRAuth.auth()?.currentUser
 		
-		ref1 = ref1.child("Users/\(self.user.uid)/posted-items")
+		ref1 = ref1.child("Users/\(self.user.uid)/postedItems")
 		
 		updateTableData()
 
 	}
+	
+	deinit {
+		ref1.removeAllObservers()
+	}
+	
 	
 	private func updateTableData(){
 		
@@ -93,14 +98,20 @@ class SharedViewController: UIViewController, UITableViewDataSource, UITableView
 		let sharedItem = items[indexPath.row]
 		cell.itemName.text = sharedItem.name
 		cell.itemAvailableDate.text = sharedItem.availableDate
-		cell.itemImage.image = getImageFromBase64String(base64String: sharedItem.itemImageBase64!)
+		if let imageName = sharedItem.itemImageBase64{
+		  let profilePic = self.getImageFromBase64String(base64String: imageName)
+		cell.itemImage.image = profilePic
+		}
 		//cell.sharedWithLabel.text = sharedItem.addedByUser
 		return cell
 	}
 	
-	private func getImageFromBase64String(base64String: String) -> UIImage{
-		let decodedData = Data(base64Encoded: base64String, options:.ignoreUnknownCharacters)
-		let image = UIImage(data: decodedData!)!
+	 func getImageFromBase64String(base64String: String) -> UIImage?{
+		var image : UIImage? = #imageLiteral(resourceName: "profile1")
+		if base64String.characters.count > 0 {
+			let decodedData = Data(base64Encoded: base64String, options:.ignoreUnknownCharacters)
+			image = UIImage(data: decodedData!)!
+		}
 		return image
 	}
 

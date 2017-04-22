@@ -58,7 +58,7 @@ class PostedItemDetailViewController: UITableViewController, UITextFieldDelegate
 	
 	private func getUserInfo(userId: String){
 		var ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(userId)/contact-info")
+		ref = ref.child("Users/\(userId)/contactInfo")
 		ref.observe(.value, with: { snapshot in
 			if snapshot.exists(){
 				self.sharedUser = User(snapshot:snapshot )
@@ -78,11 +78,38 @@ class PostedItemDetailViewController: UITableViewController, UITextFieldDelegate
 			sharedWithCell.isHidden = false
 		} else {
 			sharedWithCell.isHidden = true
+			sharedWithTextField.text = nil
+			let ref = FIRDatabase.database().reference(withPath: "Users")
+			guard let user = FIRAuth.auth()?.currentUser else {
+				return
+			}
+			ref.child("\(user.uid)/postedItems/\(self.itemInfo.key)/shared").setValue("")
 		}
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		//associate the user
+		guard let user = FIRAuth.auth()?.currentUser else {
+			return false
+		}
+		let ref = FIRDatabase.database().reference(withPath: "Users")
+
+		
+		ref.observe(.value, with: { snapshot in
+			for child in snapshot.children {
+				if (child as! FIRDataSnapshot).key != user.uid{
+					let childContactKeyPath = (child as! FIRDataSnapshot).key + "/contactInfo"
+					let childSnapshot = snapshot.childSnapshot(forPath: childContactKeyPath)
+					let userItem = User(snapshot: childSnapshot)
+					if userItem.email == textField.text{
+						ref.child("\(user.uid)/postedItems/\(self.itemInfo.key)/shared").setValue(userItem.uid)
+						self.sharedUser = userItem
+						return
+					}
+				  }
+			  }
+		})
+		
 		self.view.endEditing(true)
 		print("Done pressed")
 		return true

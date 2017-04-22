@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class AddItemToWishListViewController: UITableViewController {
 //	let ref = FIRDatabase.database().reference(withPath: "wish-list")
@@ -28,7 +29,7 @@ class AddItemToWishListViewController: UITableViewController {
         super.viewDidLoad()
 		user = FIRAuth.auth()?.currentUser
 		ref = FIRDatabase.database().reference()
-		ref = ref.child("Users/\(self.user.uid)/wish-list")
+		ref = ref.child("Users/\(self.user.uid)/wishList")
 		setUpUI()
 		
     }
@@ -107,7 +108,66 @@ class AddItemToWishListViewController: UITableViewController {
 			// 4
 			wishItemRef.setValue(wishListItem.toAnyObject())
 			self.navigationController?.popViewController(animated: true)
+			
+			
+			//add notification object
+			let notificationRef = FIRDatabase.database().reference().child("Notifications")
+			let notiItemRef = notificationRef.childByAutoId()
+			notiItemRef.setValue(wishListItem.toAnyObject())
+			
+			
+			//add notification for all near by users
+			
+			FIRDatabase.database().reference(withPath: "Users").observe(.value, with: { snapshot in
+				var nearUsers:[User] = []
+				for child in snapshot.children {
+					if (child as! FIRDataSnapshot).key != self.user.uid{
+						let childContactKeyPath = (child as! FIRDataSnapshot).key + "/contactInfo"
+						let childSnapshot = snapshot.childSnapshot(forPath: childContactKeyPath)
+						let userItem = User(snapshot: childSnapshot)
+						nearUsers.append(userItem)
+					}
+				}
+//				let loggedUserLocation = getLocation(lat: self.user.latitude, long: self.user.longitude)
+//				var allNearUsers : [NearByUser] = []
+//				for user in nearUsers{
+//					let lat = user.latitude
+//					let long = user.longitude
+//					let location = getLocation(lat: lat, long: long)
+//					let distance = loggedUserLocation.distance(from: location)
+//					print(distance)
+//					if distance < 15000 {
+//						let neighbour = NearByUser(distance: distance, user: user)
+//						allNearUsers.append(neighbour)
+//					}
+//				}
+//				
+//				for user in allNearUsers{
+//					
+//					let ref =
+//					
+//				}
+			})
+
+			
+			
+			
+			
+			//pop to wishlist view
+			self.navigationController?.popViewController(animated: true)
 		}
 	}
+	
+	private func getLocation(lat: String, long: String) -> CLLocation{
+		var location = CLLocation()
+		if let lat = Double(lat) , let long = Double(long){
+			location = CLLocation(latitude: lat, longitude: long)
+		}
+		return location
+	}
+	
+	//addnotification object
+	
+	
 
 }
