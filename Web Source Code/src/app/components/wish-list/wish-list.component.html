@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row search">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 form-group has-feedback">
+      <input type="text" #searchBox class="form-control" placeholder="Search Item.."
+             id="search-box" (keyup.enter)="search(searchBox.value)"/>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+    <div class="col-md-4">
+      <a [routerLink]="['/postItem']"><span class="glyphicon glyphicon-plus"></span></a>
+      &nbsp;<a [routerLink]="['/wishlist']"><span class="glyphicon glyphicon-star-empty"></span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 main">
+      <div class="well">
+    <h2>Add to WishList</h2><hr/>
+    <form class="form-wishlist" (submit)="addToWishList()">
+      <input type="text" [(ngModel)]="name" name="itemName" class="form-control" placeholder="Name" required/><br/>
+      <textarea name="itemComments" [(ngModel)]="comments" class="form-control" placeholder="Comments"></textarea><br/>
+      <input type="date" [(ngModel)]="requiredDate" name="requiredDate" class="form-control" placeholder="Required From" required/><br/>
+      <button type="submit" class="btn btn-md btn-success btn-block">Submit</button>
+    </form>
+  </div>
+    </div>
+    <br/><br/>
+  </div>
+</div>
+

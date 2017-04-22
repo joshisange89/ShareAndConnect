@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row search">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 form-group has-feedback">
+      <input type="text" #searchBox class="form-control" placeholder="Search Item.."
+             id="search-box" (keyup.enter)="search(searchBox.value)"/>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+    <div class="col-md-4">
+      <a [routerLink]="['/postItem']"><span class="glyphicon glyphicon-plus"></span></a>
+      &nbsp;<a [routerLink]="['/wishlist']"><span class="glyphicon glyphicon-star-empty"></span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 main">
+<div class="well">
+  <div class="itemDesc">
+    <h3>{{item.name}}</h3><br/>
+    <img [src]="item.itemImage.src" height="256" width="312" class="rotate90">
+    <br/><br/><br/><br/>
+    <div class="contact">
+      <h4>Posted By: </h4>
+      <p>Name: {{user.name}}</p>
+      <p>Email: {{user.email}}</p>
+      <p>Address: {{user.address}}</p>
+      <p>Mobile No: {{user.mobileno}}</p>
+      <p>Distance: {{distance}} miles away</p>
+      <p>Availability Date: {{item.availableDate}}</p>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>

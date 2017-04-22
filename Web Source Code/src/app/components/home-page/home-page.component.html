@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <p>{{notification}}</p>
+  </div>
+  <div class="row search">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 form-group has-feedback">
+      <input type="text" #searchBox class="form-control" placeholder="Search Item.."
+             id="search-box" (keyup.enter)="search(searchBox.value)"/>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+    <div class="col-md-4">
+      <a [routerLink]="['/postItem']"><span class="glyphicon glyphicon-plus"></span></a>
+      &nbsp;<a [routerLink]="['/wishlist']"><span class="glyphicon glyphicon-star-empty"></span></a>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="showContent">
+    <div class="col-md-3 side">
+      <div class="row profile"><br/>
+        <img *ngIf="sinUserDetail?.image" id="profileImage" [src]="sinUserDetail.image.src"/><br/>
+        <img *ngIf="!sinUserDetail?.image" id="profileImage" [src]="profileImage"/><br/>
+
+        <input *ngIf="sinUserDetail != 'undefined'" type="text" name="name" id="username" [(ngModel)]="sinUserDetail.name" size="14" readonly/><br/>
+            <a [routerLink]="['/profile']">Edit Profile &nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+      </div>
+      <div class="row info">
+        <hr/>
+        <h4>How This Works</h4>
+        <hr/>
+        <ul>
+            <li>Search for your required item</li>
+            <li>Click on item for details</li>
+            <li>Check owner’s details and availability date</li>
+            <li>Contact Owner by email or phone</li>
+            <li>Owner have to update item status if shared/unshared items</li>
+        </ul>
+      </div>
+      <div class="row quote">
+        <hr/>
+        <h4>Quote for the Day</h4>
+        <hr/>
+          Happiness is not the amount of money you have. It is the people in your life that help
+          you to create wonderful memories, and best way to multiply it is Sharing.
+          Connect with your neighbor, enrich it by sharing useful stuff.
+      </div>
+    </div>
+
+    <div class="col-md-9 main">
+      <div class="row">
+        <div class="items" *ngFor="let item of displayPostedItems">
+          <a [routerLink]="['/items', item.userkey, item.postitemkey, item.distance]">
+            <div class="col-md-4 item">
+              <img [src]="item.postitem.itemImage.src" id="itemImage" class="rotate90"/><hr/>
+              <p id="itemName">{{item.postitem.name}}</p>
+              <p>Available from: {{item.postitem.availableDate | date }}<br/>Distance: {{item.distance}} miles away from your location</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

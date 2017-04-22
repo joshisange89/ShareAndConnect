@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row search">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 form-group has-feedback">
+      <input type="text" #searchBox class="form-control" placeholder="Search Item.."
+             id="search-box" (keyup.enter)="search(searchBox.value)"/>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+    <div class="col-md-4">
+      <a [routerLink]="['/postItem']"><span class="glyphicon glyphicon-plus"></span></a>
+      &nbsp;<a [routerLink]="['/wishlist']"><span class="glyphicon glyphicon-star-empty"></span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 main">
+  <div class="well">
+    <h2>Post Item</h2><hr/>
+    <form class="form-postitem" (submit)="addItem()">
+      <img [src]="imageDefault" height="156" width="196"/><br/>
+      <input type="file" id="uploadFile" (change)="fileChangeEvent($event)" placeholder="Upload File.."/>
+      <input type="text" name="name" [(ngModel)]="name" class="form-control" placeholder="Name" required/><br/>
+      <textarea name="description" [(ngModel)]="description" class="form-control" placeholder="Description"></textarea><br/>
+      <textarea name="careInst" [(ngModel)]="careInst" class="form-control" placeholder="Care Instructions"></textarea><br/>
+      <input type="date" name="availableDate" [(ngModel)]="availableDate" class="form-control" placeholder="Available From" required/><br/>
+      <button type="submit" class="btn btn-md btn-success btn-block" >Post Item</button>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>

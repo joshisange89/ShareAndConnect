@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row search">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 form-group has-feedback">
+      <input type="text" #searchBox class="form-control" placeholder="Search Item.."
+             id="search-box" (keyup)="search(searchBox.value)"/>
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+    <div class="col-md-4">
+      <a [routerLink]="['/postItem']"><span class="glyphicon glyphicon-plus"></span></a>
+      &nbsp;<a [routerLink]="['/wishlist']"><span class="glyphicon glyphicon-star-empty"></span></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 side">
+      <div class="row profile"><br/>
+        <img *ngIf="sinUserDetail.image" [src]="sinUserDetail.image.src" id="profileImage"/><br/>
+        <img *ngIf="!sinUserDetail.image" [src]="profileImageDefault" id="profileImage"/><br/>
+
+        <input type="file" id="profilepic" (change)="fileChangeEvent($event)"
+               placeholder="Choose Profile Picture"/>
+        <input type="text" name="name" id="username" [(ngModel)]="sinUserDetail.name" size="14" readonly/><br/>
+        <br/>
+        <label forName="email">Email ID:</label><br/>
+        <input type="text" name="email" [(ngModel)]="sinUserDetail.email" size="14"/>
+        <br/><br/>
+        <label forName="address">Address:</label><br/>
+        <input type="text" name="address" [(ngModel)]="sinUserDetail.address" size="14" (keyup.enter)="editAddress()"/>
+        <a><span class="glyphicon glyphicon-pencil"></span></a><br/>
+        <br/>
+        <label forName="mobileno">Mobile No:</label><br/>
+        <input type="text" name="mobileno" [(ngModel)]="sinUserDetail.mobileno" size="14" (keyup.enter)="editMobileno()"/>
+        <a><span class="glyphicon glyphicon-pencil"></span></a><br/>
+      </div>
+    </div>
+     <div class="col-md-8 main">
+        <h3>Posted Items</h3><hr/>
+        <div class="row">
+          <div class="items" *ngFor="let item of postedItems">
+            <div class="col-md-5 item">
+              <img [src]="item.itemImage.src" id="itemImage" class="rotate90"/><hr/>
+              <h3>{{item.name}}</h3>
+              <div class="alignSlider">
+                <p id="sharedText">Shared:&nbsp;</p>
+                <label class="switch">
+                  <input type="checkbox" name="item.shared" [checked]="isShared"
+                           [(ngModel)]="item.shared" (change)="changeStatus($event, item.key)">
+                  <div class="slider round"></div>
+                </label>
+              </div>
+              <!--<ui-switch name="item.shared" [checked]="item.shared"
+                         [(ngModel)]="item.shared" (change)="changeStatus($event, item.key)">
+              </ui-switch> -->
+              <p *ngIf="!item.shared">Item is available from {{item.availableDate | date}}</p>
+              <p *ngIf="item.shared">Shared with {{item.shared}}, email: {{item.sharedWithEmail}}</p>
+              <!--button class="btn btn-small btn-primary" (click)="updateItem(item.key)">Edit</button-->
+              <button class="btn btn-small btn-danger" (click)="deleteItem(item.key)">Delete</button><br/>
+            </div>
+          </div>
+        </div>
+          <br/><br/>
+          <h3>Wish-list</h3><hr/>
+       <div class="row">
+         <p *ngIf="isNoWishList">You have no item in Wish List</p>
+          <div class="items" *ngFor="let wishitem of sinUserWishList">
+            <div class="col-md-4 item">
+              <p>{{wishitem.name}}</p>
+              <p>Item is available from {{wishitem.requiredDate}}</p>
+              <!--button class="btn btn-small btn-primary" (click)="updateWishItem(wishitem.key)">Edit</button-->
+              <button class="btn btn-small btn-danger" (click)="deleteWishItem(wishitem.$key)">Delete</button><br/>
+            </div>
+          </div>
+       </div>
+      </div>
+  </div>
+</div>
